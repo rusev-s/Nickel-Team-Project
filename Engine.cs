@@ -8,6 +8,8 @@ namespace KingSurvivalGame
     {
         private int moveCounter = 0;
         private bool gameIsInProgress = true;
+        private bool kingHasAvailableMoves = false;
+        private bool pawnsHaveAvailableMoves = false;
         private readonly GameBoard gameBoard;
         private readonly List<Figure> figures;
         private readonly List<char> charRepresentationsPawns;
@@ -155,8 +157,9 @@ namespace KingSurvivalGame
                 {
                     UpdateGameField(currentFigure, direction); // this moves the char
                     currentFigure.Position = currentPosition; // this changes the position
-                    UpdateAllAvailableMoves(); // gets the available moves for the figures
-                    CheckForKingBlocked();
+                    UpdateAllAvailableMoves(); // we moved a figure and update available moves for all figures
+                    SetFiguresHaveAvailableMoves();
+                    CheckForFiguresBlocked();
                     break;
                 }
             }
@@ -186,6 +189,9 @@ namespace KingSurvivalGame
             return direction;
         }
 
+        /// <summary>
+        /// Gets the displacement for figure movement
+        /// </summary>
         private Position GetDisplacement(Direction direction)
         {
             Position displacement = null;
@@ -291,13 +297,13 @@ namespace KingSurvivalGame
             }
         }
 
-        private void CheckForKingBlocked()
+        private void SetFiguresHaveAvailableMoves()
         {
             var allPawns = from pawn in this.figures
                            where (pawn.GetType() == typeof(Pawn))
                            select pawn;
+            pawnsHaveAvailableMoves = false;
 
-            bool pawnsHaveAvailableMoves = false;
             foreach (var pawn in allPawns)
             {
                 foreach (var move in (pawn as Pawn).ExistingMoves)
@@ -312,7 +318,8 @@ namespace KingSurvivalGame
             var kings = from king in this.figures
                         where (king.GetType() == typeof(King))
                         select king;
-            bool kingHasAvailableMoves = false;
+
+            kingHasAvailableMoves = false;
             foreach (var king in kings)
             {
                 foreach (var move in (king as King).ExistingMoves)
@@ -323,21 +330,25 @@ namespace KingSurvivalGame
                     }
                 }
             }
+        }
 
+        private void CheckForFiguresBlocked()
+        {
             if (!pawnsHaveAvailableMoves)
             {
-                Console.WriteLine("King wins!");
+                Console.WriteLine("End!");
+                Console.WriteLine("All pawns are blocked! King wins in {0} moves!", (moveCounter / 2) + 1); //added one for the last move
                 this.gameIsInProgress = false;
             }
 
             if (!kingHasAvailableMoves)
             {
-                Console.WriteLine("King loses!");
+                Console.WriteLine("King is blocked! King loses in {0} moves!", (moveCounter / 2) + 1);
                 this.gameIsInProgress = false;
             }
         }
 
-        private void CheckForKingExit(int currentKingRow)
+        private void CheckForKingExit(int currentKingRow) 
         {
             if (currentKingRow == 2) //actually gameBoard.HeightPadding
             {
