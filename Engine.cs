@@ -128,7 +128,7 @@ namespace KingSurvivalGame
                     }
                 }
 
-                return commandIsValid;
+                //return commandIsValid;
             }
 
             return commandIsValid;
