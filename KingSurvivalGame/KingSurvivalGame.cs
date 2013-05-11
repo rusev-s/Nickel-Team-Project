@@ -16,9 +16,6 @@ namespace KingSurvivalGame
             //figures.Add(new Pawn(new Position(2, 6), 'Z'));
             figures.Add(new King(new Position(7, 3))); //9, 10
             GameBoard gameBoard = new GameBoard(figures);
-            Engine engine = new Engine(null, null);
-            engine.Run();
-            
             Console.WriteLine("\nThank you for using this game!\n\n");
         }
     }
