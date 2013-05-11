@@ -1,14 +1,16 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using KingSurvivalGame;
 namespace TestKingSurvivalGame
 {
     [TestClass]
     public class TestEngine
     {
         [TestMethod]
-        public void TestMethod1()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestEngineConstructorSetNullValue_ThrowsException()
         {
+            Engine currentEngine = new Engine(null,null);
         }
     }
 }

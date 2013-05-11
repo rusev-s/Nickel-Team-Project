@@ -59,6 +59,12 @@
     <Compile Include="TestPawn.cs" />
     <Compile Include="TestPosition.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KingSurvivalGame\KingSurvivalGame.csproj">
+      <Project>{ed37a105-32c4-4168-b6d6-50934c91dfbd}</Project>
+      <Name>KingSurvivalGame</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
