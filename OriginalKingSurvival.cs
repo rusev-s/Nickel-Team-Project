@@ -21,7 +21,7 @@ namespace ConsoleApplication1
 
 namespace KingSurvivalGame
 {
-    class KingSurvivalGame
+    class KingSurvival
     {
         static char[,] dyska = 
         {

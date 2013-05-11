@@ -1,0 +1,5 @@
+C:\Users\ZliaShnur\Documents\GitHub\Nickel-Team-Project\KingSurvivalGame\obj\Debug\KingSurvivalGame.csprojResolveAssemblyReference.cache
+C:\Users\ZliaShnur\Documents\GitHub\Nickel-Team-Project\KingSurvivalGame\bin\Debug\KingSurvivalGame.exe
+C:\Users\ZliaShnur\Documents\GitHub\Nickel-Team-Project\KingSurvivalGame\bin\Debug\KingSurvivalGame.pdb
+C:\Users\ZliaShnur\Documents\GitHub\Nickel-Team-Project\KingSurvivalGame\obj\Debug\KingSurvivalGame.exe
+C:\Users\ZliaShnur\Documents\GitHub\Nickel-Team-Project\KingSurvivalGame\obj\Debug\KingSurvivalGame.pdb

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace KingSurvivalGame
 {
-    class KingSurvivalGame
+    class KingSurvival
     {
         static void Main(string[] args)
         {   
