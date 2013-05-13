@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace KingSurvivalGame
 {
-    class KingSurvival
+    public class KingSurvival
     {
-        static void Main(string[] args)
+        public static void Main()
         {   
             List<Figure> figures = new List<Figure>();
             //figures coordinates are 0-based
@@ -16,6 +16,8 @@ namespace KingSurvivalGame
             //figures.Add(new Pawn(new Position(2, 6), 'Z'));
             figures.Add(new King(new Position(7, 3))); //9, 10
             GameBoard gameBoard = new GameBoard(figures);
+            Engine engine = new Engine(gameBoard, figures);
+            engine.Run();
             Console.WriteLine("\nThank you for using this game!\n\n");
         }
     }
