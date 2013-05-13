@@ -20,8 +20,8 @@ namespace TestKingSurvivalGame
         [TestMethod]
         public void TestScenario_KingWinsIn7Moves() // tuka testvame carq da pe4eli
         {
-            string moves = string.Format("kul{0}bdr{0}kul{0}bdl{0}kur{0}adr{0}kur{0}bdl{0}kur{0}bdl{0}kul{0}ddl{0}kul{0}", Environment.NewLine);
-
+            //string moves = string.Format("kul{0}bdr{0}kul{0}bdl{0}kur{0}adr{0}kur{0}bdl{0}kur{0}bdl{0}kul{0}ddl{0}kul{0}", Environment.NewLine);
+            string moves = System.IO.File.ReadAllText("inputScenario_KingWinsIn7Moves.txt");
             using (StringWriter stringWriter = new StringWriter())
             {
                 Console.SetOut(stringWriter);

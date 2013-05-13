@@ -19,24 +19,4 @@
   <UseCPUArchitecture>AutoDetect</UseCPUArchitecture>
   <MSTestThreadApartmentState>STA</MSTestThreadApartmentState>
   <BuildProcessArchitecture>x86</BuildProcessArchitecture>
-  <IgnoredTests>
-    <RegexTestSelector>
-      <RegularExpression>TestKingSurvivalGame\.TestDirection\..*</RegularExpression>
-    </RegexTestSelector>
-    <RegexTestSelector>
-      <RegularExpression>TestKingSurvivalGame\.TestFigure\..*</RegularExpression>
-    </RegexTestSelector>
-    <RegexTestSelector>
-      <RegularExpression>TestKingSurvivalGame\.TestGameBoard\..*</RegularExpression>
-    </RegexTestSelector>
-    <RegexTestSelector>
-      <RegularExpression>TestKingSurvivalGame\.TestKing\..*</RegularExpression>
-    </RegexTestSelector>
-    <RegexTestSelector>
-      <RegularExpression>TestKingSurvivalGame\.TestPawn\..*</RegularExpression>
-    </RegexTestSelector>
-    <RegexTestSelector>
-      <RegularExpression>TestKingSurvivalGame\.TestPosition\..*</RegularExpression>
-    </RegexTestSelector>
-  </IgnoredTests>
 </ProjectConfiguration>
