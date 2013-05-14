@@ -14,7 +14,10 @@ namespace KingSurvivalGame
         private readonly List<Figure> figures;
         private readonly List<char> charRepresentationsPawns;
         private readonly char kingSymbol = 'K';
-
+        internal int MoveCounter { get; set; }
+        internal bool GameIsInProgress { get; set; }
+        internal bool KingHasAvailableMoves { get; set; }
+        internal bool PawnsHaveAvailableMoves { get; set; }
         public Engine(GameBoard gameBoard, List<Figure> figures)
         {
             this.gameBoard = gameBoard;
@@ -58,7 +61,7 @@ namespace KingSurvivalGame
             ProcessASide("Pawn");
         }
 
-        private void ProcessASide(string side)
+        internal void ProcessASide(string side)
         {
             bool isValidCommand = false;
             while (!isValidCommand)
@@ -330,7 +333,7 @@ namespace KingSurvivalGame
             }
         }
 
-        private void CheckForFiguresBlocked()
+        internal void CheckForFiguresBlocked()
         {
             if (!pawnsHaveAvailableMoves)
             {
@@ -346,7 +349,7 @@ namespace KingSurvivalGame
             }
         }
 
-        private void CheckForKingExit(int currentKingRow) 
+        internal void CheckForKingExit(int currentKingRow)
         {
             if (currentKingRow == 2) //actually gameBoard.HeightPadding
             {
@@ -354,6 +357,8 @@ namespace KingSurvivalGame
                 Console.WriteLine("King wins in {0} moves!", (moveCounter / 2) + 1); //added one for the last move
                 this.gameIsInProgress = false;
             }
+
         }
     }
 }
+
