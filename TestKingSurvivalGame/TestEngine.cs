@@ -15,6 +15,25 @@ namespace TestKingSurvivalGame
         {
             Engine currentEngine = new Engine(null,null);
         }
+        [TestMethod]
+
+        public void TestPositiveKingExit()
+        {
+            List<Figure> figures = new List<Figure>();
+            figures.Add(new Pawn(new Position(0, 0), 'A'));
+            figures.Add(new Pawn(new Position(0, 2), 'B'));
+            figures.Add(new Pawn(new Position(0, 4), 'C'));
+            figures.Add(new Pawn(new Position(0, 6), 'D'));
+            figures.Add(new King(new Position(7, 3)));
+            GameBoard gameBoard = new GameBoard(figures);
+
+            Engine currentEngine = new Engine(gameBoard, figures);
+            int currentKingRow = 2;
+            currentEngine.CheckForKingExit(currentKingRow);
+            Assert.IsFalse(currentEngine.GameIsInProgress, "King wins for sure!Game over");
+
+        }
+
 
         // from Subo
         [TestMethod]
