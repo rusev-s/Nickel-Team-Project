@@ -6,9 +6,9 @@ namespace TestKingSurvivalGame
     [TestClass]
     public class TestFigure
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
+        //[TestMethod]
+        //public void TestMethod1()
+        //{
+        //}
     }
 }

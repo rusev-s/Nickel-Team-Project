@@ -6,9 +6,9 @@ namespace TestKingSurvivalGame
     [TestClass]
     public class TestPawn
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
+        //[TestMethod]
+        //public void TestMethod1()
+        //{
+        //}
     }
 }
