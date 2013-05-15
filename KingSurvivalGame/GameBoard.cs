@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace KingSurvivalGame
 {
@@ -7,6 +8,7 @@ namespace KingSurvivalGame
     {
         public GameBoard(List<Figure> figures)
         {
+            CheckFiguresInput(figures);
             InitializeGameField(figures);
         }
 
@@ -31,6 +33,16 @@ namespace KingSurvivalGame
 
         private char[,] gameBoard;
 
+        //public int BoardHeight
+        //{
+        //    get { return Height; }
+        //}
+
+        //public int BoardWidth
+        //{
+        //    get { return Width; }
+        //}
+
         private void InitializeGameField(List<Figure> figures)
         {
             this.gameBoard = new char[TotalHeight, TotalWidth];
@@ -44,7 +56,7 @@ namespace KingSurvivalGame
                 }
             }
 
-            //put figures
+            //put figures            
             foreach (var figure in figures)
             {
                 figure.Position.Row += PaddingHeight;
@@ -57,7 +69,7 @@ namespace KingSurvivalGame
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid figure position!");
+                    throw new ArgumentOutOfRangeException("Invalid figure position!");
                 }
             }
 
@@ -176,6 +188,70 @@ namespace KingSurvivalGame
                 Console.ResetColor();
             }
             Console.WriteLine();
+        }
+
+        private void CheckFiguresInput(List<Figure> figures)
+        {
+            if (figures.Count == 0)
+            {
+                throw new MissingMemberException("No figures on the board!");
+            }
+            CheckIfThereIsOneKing(figures);
+            CheckIfThereArePawns(figures);
+            CheckIfThereAreFiguresWithTheSameName(figures);
+        }
+
+        private void CheckIfThereAreFiguresWithTheSameName(List<Figure> figures)
+        {
+            List<char> pawnsNames = new List<char>();
+            foreach (var figure in figures)
+            {
+                if (figure.GetType()==typeof(Pawn))
+                {
+                    if (figure.SymbolRepresentation=='K') // if a pawn is represented with 'K' as king
+                    {
+                        throw new ArgumentException("There cannot be pawn represented with 'K' as the king!");
+                    }
+                    pawnsNames.Add(figure.SymbolRepresentation);
+                }
+            }
+
+            if (pawnsNames.Count != pawnsNames.Distinct().Count()) // there are duplicates
+            {
+                throw new ArgumentException("There cannot be two or more pawns with the same name!");
+            }
+        }
+
+        private void CheckIfThereArePawns(List<Figure> figures)
+        {
+            int numberOfPawns = 0;
+            foreach (var figure in figures)
+            {
+                if (figure.GetType() == typeof(Pawn))
+                {
+                    numberOfPawns++;
+                }
+            }
+            if (numberOfPawns == 0)
+            {
+                throw new ArgumentOutOfRangeException("No pawns on the board");
+            }
+        }
+
+        private void CheckIfThereIsOneKing(List<Figure> figures)
+        {
+            int numberOfKings = 0;
+            foreach (var figure in figures)
+            {
+                if (figure.GetType() == typeof(King))
+                {
+                    numberOfKings++;
+                }
+            }
+            if (numberOfKings != 1)
+            {
+                throw new ArgumentOutOfRangeException("Wrong number of kings!");
+            }
         }
     }
 }

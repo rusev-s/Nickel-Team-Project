@@ -18,6 +18,7 @@ namespace KingSurvivalGame
         internal bool GameIsInProgress { get; set; }
         internal bool KingHasAvailableMoves { get; set; }
         internal bool PawnsHaveAvailableMoves { get; set; }
+
         public Engine(GameBoard gameBoard, List<Figure> figures)
         {
             this.gameBoard = gameBoard;
@@ -34,7 +35,7 @@ namespace KingSurvivalGame
         }
 
         public void Run()
-        {
+        {                       
             while (gameIsInProgress)
             {
                 if (moveCounter % 2 == 0)

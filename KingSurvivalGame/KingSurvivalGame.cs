@@ -13,8 +13,9 @@ namespace KingSurvivalGame
             figures.Add(new Pawn(new Position(0, 2), 'B')); //2,8
             figures.Add(new Pawn(new Position(0, 4), 'C')); //2,12
             figures.Add(new Pawn(new Position(0, 6), 'D')); //2,16
-            //figures.Add(new Pawn(new Position(2, 6), 'Z'));
-            figures.Add(new King(new Position(7, 3))); //9, 10
+            //figures.Add(new Pawn(new Position(1, 1), 'Z'));
+            //figures.Add(new Pawn(new Position(2, 2), 'I'));
+            figures.Add(new King(new Position(7, 3))); //9, 10            
             GameBoard gameBoard = new GameBoard(figures);
             Engine engine = new Engine(gameBoard, figures);
             engine.Run();
