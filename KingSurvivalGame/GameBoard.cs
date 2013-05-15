@@ -199,8 +199,33 @@ namespace KingSurvivalGame
             CheckIfThereIsOneKing(figures);
             CheckIfThereArePawns(figures);
             CheckIfThereAreFiguresWithTheSameName(figures);
+            CheckIfKingStartsAlreadyEscaped(figures);
         }
 
+        private void CheckIfKingStartsAlreadyEscaped(List<Figure> figures)
+        {
+            List<int> pawnRows = new List<int>();
+            int kingRow = 7; //kings lower position
+            foreach (var figure in figures)
+            {
+                if (figure.GetType() == typeof(Pawn))
+                {
+                    pawnRows.Add(figure.Position.Row);
+                }
+                else
+                {
+                    kingRow = figure.Position.Row;
+                }
+            }
+
+            //checking if all the pawns are "lower" than the king
+            int uppestPawnRow = pawnRows.Min();
+            if (uppestPawnRow >= kingRow)
+            {
+                throw new ArgumentException("King cannot be at the same or lower position than the pawns!"); // lower - higher row
+            }            
+        }
+        
         private void CheckIfThereAreFiguresWithTheSameName(List<Figure> figures)
         {
             List<char> pawnsNames = new List<char>();
