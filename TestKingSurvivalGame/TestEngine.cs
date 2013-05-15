@@ -38,7 +38,7 @@ namespace TestKingSurvivalGame
 
         public void TestProcessASide()
         {
-            string num = "KDL";
+            string num = "ADL";
             Console.SetIn(new StringReader(num));
 
             List<Figure> figures = new List<Figure>();
@@ -46,11 +46,11 @@ namespace TestKingSurvivalGame
             figures.Add(new Pawn(new Position(0, 2), 'B'));
             figures.Add(new Pawn(new Position(0, 4), 'C'));
             figures.Add(new Pawn(new Position(0, 6), 'D'));
-            figures.Add(new King(new Position(7, 3)));
+            figures.Add(new King(new Position(3, 7)));
             GameBoard gameBoard = new GameBoard(figures);
 
             Engine currentEngine = new Engine(gameBoard, figures);
-            currentEngine.ProcessASide("King");
+            currentEngine.ProcessASide("Pawn");
 
 
             Assert.IsTrue(currentEngine.IsValidCommand, "Well processed");

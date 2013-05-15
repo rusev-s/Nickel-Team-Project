@@ -26,7 +26,7 @@ namespace KingSurvivalGame
             this.gameBoard = gameBoard;
             this.figures = figures;
             this.charRepresentationsPawns = new List<char>();
-
+            this.GameIsInProgress = true;
             foreach (var figure in this.figures)
             {
                 if (figure is Pawn)
@@ -66,7 +66,7 @@ namespace KingSurvivalGame
 
         internal void ProcessASide(string side)
         {
-            //bool isValidCommand = false;
+            this.IsValidCommand = false;
             while (!this.IsValidCommand)
             {
                 if (side == "King")
