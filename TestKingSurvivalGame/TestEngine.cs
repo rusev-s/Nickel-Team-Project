@@ -13,11 +13,11 @@ namespace TestKingSurvivalGame
         [ExpectedException(typeof(NullReferenceException))]
         public void TestEngineConstructorSetNullValue_ThrowsException()
         {
-            Engine currentEngine = new Engine(null,null);
+            Engine currentEngine = new Engine(null, null);
         }
-
         [TestMethod]
-        public void TestPositiveKingExit() //TODO: to be checked
+
+        public void TestPositiveKingExit()
         {
             List<Figure> figures = new List<Figure>();
             figures.Add(new Pawn(new Position(0, 0), 'A'));
@@ -31,8 +31,31 @@ namespace TestKingSurvivalGame
             int currentKingRow = 2;
             currentEngine.CheckForKingExit(currentKingRow);
             Assert.IsFalse(currentEngine.GameIsInProgress, "King wins for sure!Game over");
+
         }
-        
+
+        [TestMethod]
+
+        public void TestProcessASide()
+        {
+            string num = "KDL";
+            Console.SetIn(new StringReader(num));
+
+            List<Figure> figures = new List<Figure>();
+            figures.Add(new Pawn(new Position(0, 0), 'A'));
+            figures.Add(new Pawn(new Position(0, 2), 'B'));
+            figures.Add(new Pawn(new Position(0, 4), 'C'));
+            figures.Add(new Pawn(new Position(0, 6), 'D'));
+            figures.Add(new King(new Position(7, 3)));
+            GameBoard gameBoard = new GameBoard(figures);
+
+            Engine currentEngine = new Engine(gameBoard, figures);
+            currentEngine.ProcessASide("King");
+
+
+            Assert.IsTrue(currentEngine.IsValidCommand, "Well processed");
+
+        }
         [TestMethod]
         public void TestScenario_KingWinsIn7Moves()
         {
@@ -54,7 +77,7 @@ namespace TestKingSurvivalGame
                     figures.Add(new King(new Position(7, 3))); //9, 10
                     GameBoard gameBoard = new GameBoard(figures);
 
-                    Engine engine = new Engine(gameBoard,figures); // adding everything to the engine
+                    Engine engine = new Engine(gameBoard, figures); // adding everything to the engine
 
                     engine.Run(); // executing the game
 

@@ -10,6 +10,7 @@ namespace KingSurvivalGame
         private bool gameIsInProgress = true;
         private bool kingHasAvailableMoves = false;
         private bool pawnsHaveAvailableMoves = false;
+        private bool isValidCommand = false;
         private readonly GameBoard gameBoard;
         private readonly List<Figure> figures;
         private readonly List<char> charRepresentationsPawns;
@@ -18,6 +19,7 @@ namespace KingSurvivalGame
         internal bool GameIsInProgress { get; set; }
         internal bool KingHasAvailableMoves { get; set; }
         internal bool PawnsHaveAvailableMoves { get; set; }
+        internal bool IsValidCommand { get; set; }
 
         public Engine(GameBoard gameBoard, List<Figure> figures)
         {
@@ -35,7 +37,7 @@ namespace KingSurvivalGame
         }
 
         public void Run()
-        {                       
+        {
             while (gameIsInProgress)
             {
                 if (moveCounter % 2 == 0)
@@ -64,8 +66,8 @@ namespace KingSurvivalGame
 
         internal void ProcessASide(string side)
         {
-            bool isValidCommand = false;
-            while (!isValidCommand)
+            //bool isValidCommand = false;
+            while (!this.IsValidCommand)
             {
                 if (side == "King")
                 {
@@ -84,8 +86,8 @@ namespace KingSurvivalGame
                 if (input != null)
                 {
                     input = input.ToUpper();
-                    isValidCommand = ValidateCommand(input);
-                    if (isValidCommand)
+                    this.IsValidCommand = ValidateCommand(input);
+                    if (this.IsValidCommand)
                     {
                         ProcessCommand(input);
                     }
@@ -98,7 +100,7 @@ namespace KingSurvivalGame
                 }
                 else
                 {
-                    isValidCommand = false;
+                    this.IsValidCommand = false;
                     Console.BackgroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("Please enter a valid command!");
                     Console.ResetColor();
@@ -362,4 +364,5 @@ namespace KingSurvivalGame
         }
     }
 }
+
 
