@@ -35,12 +35,11 @@ namespace TestKingSurvivalGame
         }
 
         [TestMethod]
-
-        public void TestProcessASide()
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestInputCommandIsNull_ThrowsException()
         {
-            string num = "ADL";
+            string num = null;
             Console.SetIn(new StringReader(num));
-
             List<Figure> figures = new List<Figure>();
             figures.Add(new Pawn(new Position(0, 0), 'A'));
             figures.Add(new Pawn(new Position(0, 2), 'B'));
@@ -50,12 +49,9 @@ namespace TestKingSurvivalGame
             GameBoard gameBoard = new GameBoard(figures);
 
             Engine currentEngine = new Engine(gameBoard, figures);
-            currentEngine.ProcessASide("Pawn");
-
-
-            Assert.IsTrue(currentEngine.IsValidCommand, "Well processed");
-
+            currentEngine.ProcessASide("King");
         }
+
         [TestMethod]
         public void TestScenario_KingWinsIn7Moves()
         {
