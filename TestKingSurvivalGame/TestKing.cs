@@ -7,6 +7,7 @@ namespace TestKingSurvivalGame
     [TestClass]
     public class TestKing
     {
+        //TODO: King moves (only up, UR, UL,down...)
         [TestMethod]
         public void TestKing_Position()
         {
@@ -19,6 +20,6 @@ namespace TestKingSurvivalGame
                 King king = new King(position);
                 Assert.AreEqual<Position>(king.Position, position, "King`s position is not working correctly");
             }
-        }
+        }       
     }
 }

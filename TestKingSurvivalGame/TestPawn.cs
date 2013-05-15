@@ -6,9 +6,12 @@ namespace TestKingSurvivalGame
     [TestClass]
     public class TestPawn
     {
-        //[TestMethod]
-        //public void TestMethod1()
-        //{
-        //}
+        //TODO: Pawn moves (only up, UR, UL,down...)
+
+        [TestMethod]
+        public void TestPawn_CannotMoveUp()
+        {
+
+        }
     }
 }
