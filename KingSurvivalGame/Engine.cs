@@ -40,7 +40,7 @@ namespace KingSurvivalGame
         {
             while (gameIsInProgress)
             {
-                if (moveCounter % 2 == 0)
+                if (this.MoveCounter % 2 == 0)
                 {
                     gameBoard.DrawGameBoard();
                     this.ProcessKingSide();
@@ -96,14 +96,16 @@ namespace KingSurvivalGame
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.WriteLine("Invalid command name!");
                         Console.ResetColor();
+                        
                     }
                 }
                 else
                 {
-                    this.IsValidCommand = false;
-                    Console.BackgroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine("Please enter a valid command!");
-                    Console.ResetColor();
+                   throw new ArgumentNullException(input);
+                    //this.IsValidCommand = false;
+                    //Console.BackgroundColor = ConsoleColor.DarkRed;
+                    //Console.WriteLine("please enter a valid command!");
+                    ////console.resetcolor();
                 }
             }
         }
@@ -133,6 +135,7 @@ namespace KingSurvivalGame
                         break;
                     }
                 }
+                return commandIsValid;
             }
 
             return commandIsValid;

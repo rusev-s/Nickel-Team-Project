@@ -51,6 +51,53 @@ namespace TestKingSurvivalGame
             Engine currentEngine = new Engine(gameBoard, figures);
             currentEngine.ProcessASide("King");
         }
+        [TestMethod]
+        public void TestInputCommandForKingIsEligible()
+        {
+            string num = "KUR";
+            Console.SetIn(new StringReader(num));
+            List<Figure> figures = new List<Figure>();
+            figures.Add(new Pawn(new Position(0, 0), 'A'));
+            figures.Add(new Pawn(new Position(0, 2), 'B'));
+            figures.Add(new Pawn(new Position(0, 4), 'C'));
+            figures.Add(new Pawn(new Position(0, 6), 'D'));
+            figures.Add(new King(new Position(3, 7)));
+            GameBoard gameBoard = new GameBoard(figures);
+
+            Engine currentEngine = new Engine(gameBoard, figures);
+            currentEngine.MoveCounter = 1;
+            currentEngine.ProcessASide("King");
+            Assert.IsTrue(currentEngine.IsValidCommand, "Kommand is valid");
+        }
+        [TestMethod]
+        public void TestInputCommandForKingIsNotEligible()
+        {
+            
+                StringWriter stringWriter = new StringWriter();
+                Console.SetOut(stringWriter);
+                string num = "KUR";
+                Console.SetIn(new StringReader(num));
+
+                List<Figure> figures = new List<Figure>();
+                figures.Add(new Pawn(new Position(0, 0), 'A'));
+                figures.Add(new Pawn(new Position(0, 2), 'B'));
+                figures.Add(new Pawn(new Position(0, 4), 'C'));
+                figures.Add(new Pawn(new Position(0, 6), 'D'));
+                figures.Add(new King(new Position(3, 7)));
+                GameBoard gameBoard = new GameBoard(figures);
+
+                Engine currentEngine = new Engine(gameBoard, figures);
+                currentEngine.ProcessASide("King");
+              
+                
+                string expected = "Please enter king's turn: You can't move there!";
+                string actual = stringWriter.ToString();
+
+                Assert.AreEqual(expected, actual);
+              
+            
+        }
+
 
         [TestMethod]
         public void TestScenario_KingWinsIn7Moves()
