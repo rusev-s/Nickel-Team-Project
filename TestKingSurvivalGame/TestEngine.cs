@@ -9,6 +9,8 @@ namespace TestKingSurvivalGame
     [TestClass]
     public class TestEngine
     {
+        // TODO: more full game scenarios
+
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
         public void TestEngineConstructorSetNullValue_ThrowsException()

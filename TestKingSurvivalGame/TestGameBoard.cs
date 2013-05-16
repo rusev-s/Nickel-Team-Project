@@ -9,7 +9,24 @@ namespace TestKingSurvivalGame
     public class TestGameBoard
     {
 
-        //TODO: Figure not on the right color field;        
+        //TODO: Figure not on the right color field;  
+
+        [TestMethod]        
+        public void TestGameBoard_FiguresNotOnTheSameColors()
+        {
+            List<Figure> figures = new List<Figure>();
+            // adding pawns
+            figures.Add(new Pawn(new Position(3, 0), 'A'));
+            figures.Add(new Pawn(new Position(4, 2), 'B'));
+            figures.Add(new Pawn(new Position(5, 4), 'C'));
+            figures.Add(new Pawn(new Position(5, 6), 'D'));
+            // adding king
+            figures.Add(new King(new Position(3, 8)));
+
+            //Pawn pawn = new Pawn((3, 0), 'A');
+            //pawn.SymbolRepresentation
+            //GameBoard gameBoard = new GameBoard(figures);
+        }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
