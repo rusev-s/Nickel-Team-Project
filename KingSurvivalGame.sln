@@ -5,6 +5,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KingSurvivalGame", "KingSur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestKingSurvivalGame", "TestKingSurvivalGame\TestKingSurvivalGame.csproj", "{6983D01A-E51A-43B7-81D9-014B40087FD5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{62C05172-25B2-4EA2-8274-F811520979CD}"
+	ProjectSection(SolutionItems) = preProject
+		KingSurvivalRefactoringDocumentation.docx = KingSurvivalRefactoringDocumentation.docx
+		OriginalKingSurvival.cs = OriginalKingSurvival.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
