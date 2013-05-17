@@ -110,11 +110,11 @@ namespace KingSurvivalGame
             }
         }
 
-        private bool ValidateCommand(string commandToCheck)
+        internal bool ValidateCommand(string commandToCheck)
         {
             bool commandIsValid = false;
 
-            if (this.moveCounter % 2 == 0) //king's move
+            if (this.MoveCounter % 2 == 0) //king's move
             {
                 if (commandToCheck == kingSymbol + Direction.DL.ToString() ||
                     commandToCheck == kingSymbol + Direction.DR.ToString() ||
@@ -124,7 +124,7 @@ namespace KingSurvivalGame
                     commandIsValid = true;
                 }
             }
-            else if (this.moveCounter % 2 != 0) //pawn's move
+            else if (this.MoveCounter % 2 != 0) //pawn's move
             {
                 foreach (var letterRepresentation in charRepresentationsPawns)
                 {
@@ -229,7 +229,7 @@ namespace KingSurvivalGame
             return valid;
         }
 
-        private Position GetNewCoordinates(Figure currentFigure, Direction direction)
+        internal Position GetNewCoordinates(Figure currentFigure, Direction direction)
         {
             Position currentPosition = currentFigure.Position;
             Position displacement = GetDisplacement(direction);
@@ -360,8 +360,8 @@ namespace KingSurvivalGame
             if (currentKingRow == 2) //actually gameBoard.HeightPadding
             {
                 Console.WriteLine("End!");
-                Console.WriteLine("King wins in {0} moves!", (moveCounter / 2) + 1); //added one for the last move
-                this.gameIsInProgress = false;
+                Console.WriteLine("King wins in {0} moves!", (this.MoveCounter / 2) + 1); //added one for the last move
+                this.GameIsInProgress = false;
             }
 
         }

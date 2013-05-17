@@ -53,11 +53,27 @@ namespace TestKingSurvivalGame
             Engine currentEngine = new Engine(gameBoard, figures);
             currentEngine.ProcessASide("King");
         }
+
         [TestMethod]
-        public void TestInputCommandForKingIsEligible()
+        public void TestInputCommandNameKingIsEligible()
         {
-            string num = "KUR";
-            Console.SetIn(new StringReader(num));
+           
+            List<Figure> figures = new List<Figure>();
+            figures.Add(new Pawn(new Position(0, 0), 'A'));
+            figures.Add(new Pawn(new Position(0, 2), 'B'));
+            figures.Add(new Pawn(new Position(0, 4), 'C'));
+            figures.Add(new Pawn(new Position(0, 6), 'D'));
+            figures.Add(new King(new Position(3, 7)));
+            GameBoard gameBoard = new GameBoard(figures);
+            Engine currentEngine = new Engine(gameBoard, figures);
+            string command = "KUL";
+            Assert.IsTrue(currentEngine.ValidateCommand(command), "Command is valid named");
+        }
+
+        [TestMethod]
+        public void TestInputCommandNameKingIsNotEligible()
+        {
+           
             List<Figure> figures = new List<Figure>();
             figures.Add(new Pawn(new Position(0, 0), 'A'));
             figures.Add(new Pawn(new Position(0, 2), 'B'));
@@ -67,19 +83,15 @@ namespace TestKingSurvivalGame
             GameBoard gameBoard = new GameBoard(figures);
 
             Engine currentEngine = new Engine(gameBoard, figures);
+            string command = "KURT";
             currentEngine.MoveCounter = 1;
-            currentEngine.ProcessASide("King");
-            Assert.IsTrue(currentEngine.IsValidCommand, "Kommand is valid");
-        }
-        [TestMethod]
-        public void TestInputCommandForKingIsNotEligible()
-        {
-            
-                StringWriter stringWriter = new StringWriter();
-                Console.SetOut(stringWriter);
-                string num = "KUR";
-                Console.SetIn(new StringReader(num));
 
+            Assert.IsFalse(currentEngine.ValidateCommand(command), "Command is not valid named");
+        }
+
+        [TestMethod]
+        public void TestInputCommandForPawnIsEligible()
+        {
                 List<Figure> figures = new List<Figure>();
                 figures.Add(new Pawn(new Position(0, 0), 'A'));
                 figures.Add(new Pawn(new Position(0, 2), 'B'));
@@ -87,17 +99,107 @@ namespace TestKingSurvivalGame
                 figures.Add(new Pawn(new Position(0, 6), 'D'));
                 figures.Add(new King(new Position(3, 7)));
                 GameBoard gameBoard = new GameBoard(figures);
-
                 Engine currentEngine = new Engine(gameBoard, figures);
-                currentEngine.ProcessASide("King");
-              
-                
-                string expected = "Please enter king's turn: You can't move there!";
-                string actual = stringWriter.ToString();
+                currentEngine.MoveCounter = 3;
+                string currentComand = "ADR";
+                Assert.IsTrue(currentEngine.ValidateCommand(currentComand), "Command is valid named");
+        }
+        [TestMethod]
+        public void TestInputCommandForPawnIsNotEligible()
+        {
+            List<Figure> figures = new List<Figure>();
+            figures.Add(new Pawn(new Position(0, 0), 'A'));
+            figures.Add(new Pawn(new Position(0, 2), 'B'));
+            figures.Add(new Pawn(new Position(0, 4), 'C'));
+            figures.Add(new Pawn(new Position(0, 6), 'D'));
+            figures.Add(new King(new Position(3, 7)));
+            GameBoard gameBoard = new GameBoard(figures);
+            Engine currentEngine = new Engine(gameBoard, figures);
+            currentEngine.MoveCounter = 3;
+            string currentComand = "ADRt";
+            Assert.IsFalse(currentEngine.ValidateCommand(currentComand), "Command is not valid named");
+        }
 
-                Assert.AreEqual(expected, actual);
-              
-            
+        [TestMethod]
+        public void TestKingImpossibleMove()
+        {
+            List<Figure> figures = new List<Figure>();
+            figures.Add(new Pawn(new Position(0, 0), 'A'));
+            figures.Add(new Pawn(new Position(0, 2), 'B'));
+            figures.Add(new Pawn(new Position(0, 4), 'C'));
+            figures.Add(new Pawn(new Position(0, 6), 'D'));
+            King newKing=new King(new Position(3, 7));
+            figures.Add(newKing);
+            GameBoard gameBoard = new GameBoard(figures);
+            Engine currentEngine = new Engine(gameBoard, figures);
+            Assert.IsNull(currentEngine.GetNewCoordinates(newKing,Direction.UR), "You can't move here");
+        }
+
+        [TestMethod]
+        public void TestKingPossibleMove()
+        {
+            List<Figure> figures = new List<Figure>();
+            figures.Add(new Pawn(new Position(0, 0), 'A'));
+            figures.Add(new Pawn(new Position(0, 2), 'B'));
+            figures.Add(new Pawn(new Position(0, 4), 'C'));
+            figures.Add(new Pawn(new Position(0, 6), 'D'));
+            King newKing = new King(new Position(3, 7));
+            figures.Add(newKing);
+            GameBoard gameBoard = new GameBoard(figures);
+            Engine currentEngine = new Engine(gameBoard, figures);
+            bool isNewPosition=(currentEngine.GetNewCoordinates(newKing, Direction.UL))is Position ;
+
+            Assert.IsTrue(isNewPosition, "You can move here");
+        }
+        [TestMethod]
+        public void TestPawnImpossibleOutOfBorderMove()
+        {
+            List<Figure> figures = new List<Figure>();
+            figures.Add(new Pawn(new Position(0, 0), 'A'));
+            figures.Add(new Pawn(new Position(0, 2), 'B'));
+            figures.Add(new Pawn(new Position(0, 4), 'C'));
+            figures.Add(new Pawn(new Position(0, 6), 'D'));
+            King newKing = new King(new Position(3, 7));
+            figures.Add(newKing);
+            GameBoard gameBoard = new GameBoard(figures);
+            Engine currentEngine = new Engine(gameBoard, figures);
+            Assert.IsNull(currentEngine.GetNewCoordinates(newKing, Direction.UR), "You can't move here");
+        }
+
+        [TestMethod]
+        public void TestPawnImpossibleMove()
+        {
+            List<Figure> figures = new List<Figure>();
+            figures.Add(new Pawn(new Position(0, 0), 'A'));
+            figures.Add(new Pawn(new Position(0, 2), 'B'));
+            figures.Add(new Pawn(new Position(0, 4), 'C'));
+            Pawn newPawn = new Pawn(new Position(3, 4), 'D');
+            figures.Add(newPawn);
+            King newKing = new King(new Position(4, 5));
+            figures.Add(newKing);
+            GameBoard gameBoard = new GameBoard(figures);
+            Engine currentEngine = new Engine(gameBoard, figures);
+            Position newPosition = currentEngine.GetNewCoordinates(newPawn, Direction.DR) ;
+
+            Assert.IsNull(newPosition, "You can't move here,cell is busy");
+        }
+
+        [TestMethod]
+        public void TestPawnUpMoveInTableBorders()
+        {
+            List<Figure> figures = new List<Figure>();
+            figures.Add(new Pawn(new Position(0, 0), 'A'));
+            figures.Add(new Pawn(new Position(0, 2), 'B'));
+            figures.Add(new Pawn(new Position(0, 4), 'C'));
+            Pawn newPawn = new Pawn(new Position(3, 4), 'D');
+            figures.Add(newPawn);
+            King newKing = new King(new Position(4, 5));
+            figures.Add(newKing);
+            GameBoard gameBoard = new GameBoard(figures);
+            Engine currentEngine = new Engine(gameBoard, figures);
+            Position newPosition = currentEngine.GetNewCoordinates(newPawn, Direction.UR) ;
+
+            Assert.IsFalse(currentEngine.ValidateCommand("DUR"), "You can't move in this direction");
         }
 
 
