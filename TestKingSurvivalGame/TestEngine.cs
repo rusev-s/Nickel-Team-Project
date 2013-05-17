@@ -17,8 +17,8 @@ namespace TestKingSurvivalGame
         {
             Engine currentEngine = new Engine(null, null);
         }
-        [TestMethod]
 
+        [TestMethod]
         public void TestPositiveKingExit()
         {
             List<Figure> figures = new List<Figure>();
@@ -55,9 +55,8 @@ namespace TestKingSurvivalGame
         }
 
         [TestMethod]
-        public void TestInputCommandNameKingIsEligible()
-        {
-           
+        public void TestInputCommandNameKingIsEligible_UL()
+        {           
             List<Figure> figures = new List<Figure>();
             figures.Add(new Pawn(new Position(0, 0), 'A'));
             figures.Add(new Pawn(new Position(0, 2), 'B'));
@@ -67,13 +66,57 @@ namespace TestKingSurvivalGame
             GameBoard gameBoard = new GameBoard(figures);
             Engine currentEngine = new Engine(gameBoard, figures);
             string command = "KUL";
-            Assert.IsTrue(currentEngine.ValidateCommand(command), "Command is valid named");
+            Assert.IsTrue(currentEngine.ValidateCommand(command), "KUL is valid command");
         }
 
         [TestMethod]
-        public void TestInputCommandNameKingIsNotEligible()
+        public void TestInputCommandNameKingIsEligible_UR()
         {
-           
+            List<Figure> figures = new List<Figure>();
+            figures.Add(new Pawn(new Position(0, 0), 'A'));
+            figures.Add(new Pawn(new Position(0, 2), 'B'));
+            figures.Add(new Pawn(new Position(0, 4), 'C'));
+            figures.Add(new Pawn(new Position(0, 6), 'D'));
+            figures.Add(new King(new Position(3, 7)));
+            GameBoard gameBoard = new GameBoard(figures);
+            Engine currentEngine = new Engine(gameBoard, figures);
+            string command = "KUR";
+            Assert.IsTrue(currentEngine.ValidateCommand(command), "KUR is valid command");
+        }
+
+        [TestMethod]
+        public void TestInputCommandNameKingIsEligible_DR()
+        {
+            List<Figure> figures = new List<Figure>();
+            figures.Add(new Pawn(new Position(0, 0), 'A'));
+            figures.Add(new Pawn(new Position(0, 2), 'B'));
+            figures.Add(new Pawn(new Position(0, 4), 'C'));
+            figures.Add(new Pawn(new Position(0, 6), 'D'));
+            figures.Add(new King(new Position(3, 7)));
+            GameBoard gameBoard = new GameBoard(figures);
+            Engine currentEngine = new Engine(gameBoard, figures);
+            string command = "KUR";
+            Assert.IsTrue(currentEngine.ValidateCommand(command), "KDR is valid command");
+        }
+
+        [TestMethod]
+        public void TestInputCommandNameKingIsEligible_DL()
+        {
+            List<Figure> figures = new List<Figure>();
+            figures.Add(new Pawn(new Position(0, 0), 'A'));
+            figures.Add(new Pawn(new Position(0, 2), 'B'));
+            figures.Add(new Pawn(new Position(0, 4), 'C'));
+            figures.Add(new Pawn(new Position(0, 6), 'D'));
+            figures.Add(new King(new Position(3, 7)));
+            GameBoard gameBoard = new GameBoard(figures);
+            Engine currentEngine = new Engine(gameBoard, figures);
+            string command = "KUR";
+            Assert.IsTrue(currentEngine.ValidateCommand(command), "KDL is valid command");
+        }        
+
+        [TestMethod]
+        public void TestInputCommandNameKingIsNotEligible()
+        {           
             List<Figure> figures = new List<Figure>();
             figures.Add(new Pawn(new Position(0, 0), 'A'));
             figures.Add(new Pawn(new Position(0, 2), 'B'));
