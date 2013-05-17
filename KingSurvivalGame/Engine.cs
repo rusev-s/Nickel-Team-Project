@@ -6,8 +6,11 @@ namespace KingSurvivalGame
 {
     public class Engine
     {
+        private int moveCounter = 0;
+        private bool gameIsInProgress = true;
         private bool kingHasAvailableMoves = false;
         private bool pawnsHaveAvailableMoves = false;
+        private bool isValidCommand = false;
         private readonly GameBoard gameBoard;
         private readonly List<Figure> figures;
         private readonly List<char> charRepresentationsPawns;
@@ -35,7 +38,7 @@ namespace KingSurvivalGame
 
         public void Run()
         {
-            while (GameIsInProgress)
+            while (gameIsInProgress)
             {
                 if (this.MoveCounter % 2 == 0)
                 {
@@ -47,6 +50,7 @@ namespace KingSurvivalGame
                     gameBoard.DrawGameBoard();
                     this.ProcessPawnSide();
                 }
+
             }
         }
 
@@ -92,11 +96,16 @@ namespace KingSurvivalGame
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.WriteLine("Invalid command name!");
                         Console.ResetColor();
+                        
                     }
                 }
                 else
                 {
-                    throw new ArgumentNullException("Input is null!");
+                   throw new ArgumentNullException(input);
+                    //this.IsValidCommand = false;
+                    //Console.BackgroundColor = ConsoleColor.DarkRed;
+                    //Console.WriteLine("please enter a valid command!");
+                    ////console.resetcolor();
                 }
             }
         }
@@ -132,15 +141,6 @@ namespace KingSurvivalGame
             return commandIsValid;
         }
 
-        /// <summary>
-        /// The main logic of the game is here. 
-        /// Processes given command. If the command is valid
-        /// the char representation of figure is moved and 
-        /// also the coordinates of it are updated. After that
-        /// there is a check if the moved figure blocks any other figure
-        /// and in the end there is a check if the game ends because of 
-        /// blocked figure.
-        /// </summary>
         private void ProcessCommand(string input)
         {
             char figureLetter = input[0];
@@ -159,18 +159,12 @@ namespace KingSurvivalGame
 
             while (currentPosition != null)
             {
-                //returns null for invalid coordinates
-                currentPosition = GetNewCoordinates(currentFigure, direction);
-                //we found valid coordinates
-                if (currentPosition != null) 
+                currentPosition = GetNewCoordinates(currentFigure, direction); //returns null for invalid coordinates
+                if (currentPosition != null) //we found valid coordinates
                 {
-                    // this moves the char representation of the figure
-                    UpdateGameField(currentFigure, direction);
-                    // this changes the position
-                    currentFigure.Position = currentPosition;
-                    // we moved a figure and update available moves for all figures
-                    UpdateAllAvailableMoves(); 
-                    // check if figures have available moves and for end game
+                    UpdateGameField(currentFigure, direction); // this moves the char
+                    currentFigure.Position = currentPosition; // this changes the position
+                    UpdateAllAvailableMoves(); // we moved a figure and update available moves for all figures
                     SetFiguresHaveAvailableMoves();
                     CheckForFiguresBlocked();
                     break;
@@ -178,9 +172,6 @@ namespace KingSurvivalGame
             }
         }
 
-        /// <summary>
-        /// Gets the direction for the figure from given string input
-        /// </summary>
         private Direction GetDirection(string commandDirection)
         {
             Direction direction = default(Direction);
@@ -199,7 +190,7 @@ namespace KingSurvivalGame
                     direction = Direction.UR;
                     break;
                 default:
-                    throw new ArgumentException("Invalid direction!");
+                    break;
             }
 
             return direction;
@@ -226,7 +217,7 @@ namespace KingSurvivalGame
                     displacement = new Position(-1, 2);
                     break;
                 default:
-                    throw new ArgumentException("Invalid direction for displacement!");
+                    break;
             }
 
             return displacement;
@@ -265,7 +256,7 @@ namespace KingSurvivalGame
             char sign = gameBoard[oldPosition.Row, oldPosition.Column];
             gameBoard[oldPosition.Row, oldPosition.Column] = ' ';
             gameBoard[newPosition.Row, newPosition.Column] = sign;
-            this.MoveCounter++; //we processed a valid command so the moves increment
+            this.moveCounter++; //we processed a valid command so the moves increment
 
             CheckForKingExit(newPosition.Row);
         }
@@ -353,14 +344,14 @@ namespace KingSurvivalGame
             if (!pawnsHaveAvailableMoves)
             {
                 Console.WriteLine("End!");
-                Console.WriteLine("All pawns are blocked! King wins in {0} moves!", (MoveCounter / 2) + 1); //added one for the last move
-                this.GameIsInProgress = false;
+                Console.WriteLine("All pawns are blocked! King wins in {0} moves!", (moveCounter / 2) + 1); //added one for the last move
+                this.gameIsInProgress = false;
             }
 
             if (!kingHasAvailableMoves)
             {
-                Console.WriteLine("King is blocked! King loses in {0} moves!", (MoveCounter / 2) + 1);
-                this.GameIsInProgress = false;
+                Console.WriteLine("King is blocked! King loses in {0} moves!", (moveCounter / 2) + 1);
+                this.gameIsInProgress = false;
             }
         }
 
@@ -369,8 +360,7 @@ namespace KingSurvivalGame
             if (currentKingRow == 2) //actually gameBoard.HeightPadding
             {
                 Console.WriteLine("End!");
-                //added one for the last move
-                Console.WriteLine("King wins in {0} moves!", (this.MoveCounter / 2) + 1); 
+                Console.WriteLine("King wins in {0} moves!", (this.MoveCounter / 2) + 1); //added one for the last move
                 this.GameIsInProgress = false;
             }
 
