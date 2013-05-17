@@ -12,3 +12,10 @@ C:\Users\ZliaShnur\Documents\GitHub\Nickel-Team-Project\TestKingSurvivalGame\bin
 C:\Users\ZliaShnur\Documents\GitHub\Nickel-Team-Project\TestKingSurvivalGame\obj\Debug\TestKingSurvivalGame.csprojResolveAssemblyReference.cache
 C:\Users\ZliaShnur\Documents\GitHub\Nickel-Team-Project\TestKingSurvivalGame\obj\Debug\TestKingSurvivalGame.dll
 C:\Users\ZliaShnur\Documents\GitHub\Nickel-Team-Project\TestKingSurvivalGame\obj\Debug\TestKingSurvivalGame.pdb
+C:\Users\rusev_000\Documents\GitHub\Nickel-Team-Project\TestKingSurvivalGame\bin\Debug\TestKingSurvivalGame.dll
+C:\Users\rusev_000\Documents\GitHub\Nickel-Team-Project\TestKingSurvivalGame\bin\Debug\TestKingSurvivalGame.pdb
+C:\Users\rusev_000\Documents\GitHub\Nickel-Team-Project\TestKingSurvivalGame\bin\Debug\KingSurvivalGame.exe
+C:\Users\rusev_000\Documents\GitHub\Nickel-Team-Project\TestKingSurvivalGame\bin\Debug\KingSurvivalGame.pdb
+C:\Users\rusev_000\Documents\GitHub\Nickel-Team-Project\TestKingSurvivalGame\obj\Debug\TestKingSurvivalGame.csprojResolveAssemblyReference.cache
+C:\Users\rusev_000\Documents\GitHub\Nickel-Team-Project\TestKingSurvivalGame\obj\Debug\TestKingSurvivalGame.dll
+C:\Users\rusev_000\Documents\GitHub\Nickel-Team-Project\TestKingSurvivalGame\obj\Debug\TestKingSurvivalGame.pdb

@@ -7,26 +7,31 @@ namespace KingSurvivalGame
         public Position Position { get; set; }
         private char symbolRepresentation;
 
-        public Figure(Position position,char symbolRepresentation)
+        public Figure(Position position, char symbol)
         {
             this.Position = position;
-            this.SymbolRepresentation = symbolRepresentation;
+
+            //if (((int)symbol >= (int)'a') && ((int)'z' <= (int)symbol))) || 
+            //    ((int)symbol >= (int)'A' &&  (int)'Z' <= (int)symbol))
+            if ((symbol >= 'A' && symbol <= 'Z') || (symbol >= 'a' && symbol <= 'z'))
+            {
+                this.symbolRepresentation = symbol;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("Not valid figure symbol");
+            }
         }
 
         public char SymbolRepresentation
         {
             get
             {
-                return this.symbolRepresentation; 
+                return this.symbolRepresentation;
             }
-            set
+            private set
             {
-                if (((int)value < 65 && 90 < (int)value) || ((int)value < 97 && 123 < (int)value))
-                {
-                    throw new ArgumentOutOfRangeException("Not valid figure symbol");
-                }
-                this.symbolRepresentation = value;
             }
-        }               
+        }
     }
 }

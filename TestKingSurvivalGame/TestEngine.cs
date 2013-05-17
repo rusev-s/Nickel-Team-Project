@@ -280,5 +280,35 @@ namespace TestKingSurvivalGame
                 }
             }
         }
+
+        [TestMethod]
+        public void TestScenario_KingWinsIn2Moves()
+        {
+            string moves = System.IO.File.ReadAllText("inputScenario_KingWinsIn2Moves.txt");
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+
+                using (StringReader stringReader = new StringReader(moves))
+                {
+                    Console.SetIn(stringReader);
+                    List<Figure> figures = new List<Figure>();
+                    figures.Add(new Pawn(new Position(0, 4), 'A')); //2,12
+                    figures.Add(new King(new Position(2, 3))); //9, 10
+                    GameBoard gameBoard = new GameBoard(figures);
+
+                    Engine engine = new Engine(gameBoard, figures); // adding everything to the engine
+
+                    engine.Run(); // executing the game
+
+                    string[] outputLines = stringWriter.ToString().Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+                    string expected = "King wins in 2 moves!";
+                    string actual = outputLines[outputLines.Length - 1];
+
+                    Assert.AreEqual(expected, actual);
+                }
+            }
+        }
     }
 }

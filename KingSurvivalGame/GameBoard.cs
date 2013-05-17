@@ -83,7 +83,7 @@ namespace KingSurvivalGame
             //top and bottom borders
             for (int col = PaddingWidth; col < TotalWidth - PaddingWidth; col++)
             {
-                this.gameBoard[PaddingHeight - 1,col] = '_';
+                this.gameBoard[PaddingHeight - 1, col] = '_';
                 this.gameBoard[Height + PaddingHeight, col] = '_';
             }
 
@@ -223,17 +223,17 @@ namespace KingSurvivalGame
             if (uppestPawnRow >= kingRow)
             {
                 throw new ArgumentException("King cannot be at the same or lower position than the pawns!"); // lower - higher row
-            }            
+            }
         }
-        
+
         private void CheckIfThereAreFiguresWithTheSameName(List<Figure> figures)
         {
             List<char> pawnsNames = new List<char>();
             foreach (var figure in figures)
             {
-                if (figure.GetType()==typeof(Pawn))
+                if (figure.GetType() == typeof(Pawn))
                 {
-                    if (figure.SymbolRepresentation=='K') // if a pawn is represented with 'K' as king
+                    if (figure.SymbolRepresentation == 'K') // if a pawn is represented with 'K' as king
                     {
                         throw new ArgumentException("There cannot be pawn represented with 'K' as the king!");
                     }
