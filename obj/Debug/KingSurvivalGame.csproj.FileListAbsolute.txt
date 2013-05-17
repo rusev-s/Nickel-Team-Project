@@ -8,3 +8,8 @@ C:\Users\snowflake\Desktop\allprat2\Nickel-Team-Project\KingSurvivalGame\obj\Deb
 C:\Users\snowflake\Desktop\allprat2\Nickel-Team-Project\KingSurvivalGame\bin\Debug\KingSurvivalGame.exe
 C:\Users\snowflake\Desktop\allprat2\Nickel-Team-Project\KingSurvivalGame\bin\Debug\KingSurvivalGame.pdb
 C:\Users\snowflake\Desktop\allprat2\Nickel-Team-Project\KingSurvivalGame\obj\Debug\KingSurvivalGame.csprojResolveAssemblyReference.cache
+C:\Users\rusev_000\Documents\GitHub\Nickel-Team-Project\KingSurvivalGame\obj\Debug\KingSurvivalGame.exe
+C:\Users\rusev_000\Documents\GitHub\Nickel-Team-Project\KingSurvivalGame\obj\Debug\KingSurvivalGame.pdb
+C:\Users\rusev_000\Documents\GitHub\Nickel-Team-Project\KingSurvivalGame\bin\Debug\KingSurvivalGame.exe
+C:\Users\rusev_000\Documents\GitHub\Nickel-Team-Project\KingSurvivalGame\bin\Debug\KingSurvivalGame.pdb
+C:\Users\rusev_000\Documents\GitHub\Nickel-Team-Project\KingSurvivalGame\obj\Debug\KingSurvivalGame.csprojResolveAssemblyReference.cache
